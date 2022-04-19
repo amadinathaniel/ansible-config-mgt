@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+    ANSIBLE_CONFIG="/home/ubuntu/ansible-config-artifact/deploy/ansible.cfg"
   }
 
   stages {
