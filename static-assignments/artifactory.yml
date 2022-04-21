@@ -1,0 +1,7 @@
+---
+- hosts: artifact_repository
+  ignore_unreachable: yes
+  become: yes
+  roles:
+    - robertdebock.artifactory
+  tags: ci_configuration
