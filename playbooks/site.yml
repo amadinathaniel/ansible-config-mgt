@@ -3,10 +3,15 @@
 
 - name: Include dynamic variables
   hosts: all
+  ignore_unreachable: yes
   tasks:
     - include_tasks: ../dynamic-assignments/env-vars.yml
-  tags:
-    - always
+
+- name: Install PHP and Dependencies on Jenkins Server
+  hosts: localhost
+  tasks:
+    - include_tasks: ../dynamic-assignments/ci-server.yml
+  tags: local
 
 # - name: Webserver assignment
 # import_playbook: ../static-assignments/uat-webservers.yml
