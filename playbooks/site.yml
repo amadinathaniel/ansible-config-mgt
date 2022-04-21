@@ -1,10 +1,4 @@
 ---
-# - hosts: all
-# - import_playbook: ../static-assignments/common-del.yml
-
-# - hosts: uat-webservers
-# - import_playbook: ../static-assignments/uat-webservers.yml
-
 - import_playbook: ../static-assignments/common.yml   
 
 - name: Include dynamic variables
@@ -14,9 +8,12 @@
   tags:
     - always
 
-- name: Webserver assignment
-  import_playbook: ../static-assignments/uat-webservers.yml
+# - name: Webserver assignment
+# import_playbook: ../static-assignments/uat-webservers.yml
 
-- name: Loadbalancers assignment
-  import_playbook: ../static-assignments/loadbalancers.yml
-  when: load_balancer_is_required
+# - name: Loadbalancers assignment
+#  import_playbook: ../static-assignments/loadbalancers.yml
+#  when: load_balancer_is_required
+
+- name: Install Artifactory
+  import_playbook: ../static-assignments/artifactory.yml
