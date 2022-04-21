@@ -1,28 +1,28 @@
 ---
-- name: update web and nfs servers
+- name: update web, nfs and db servers
   tags: webservers
-  hosts: webservers, nfs
+  hosts: webservers, nfs, db
   remote_user: ec2-user
   become: yes
   become_user: root
+  ignore_unreachable: yes
   tasks:
     - name: ensure wireshark is at the latest version
       yum:
         name: wireshark
         state: latest
 
-    - name: set timezone to Africa/Lagos
-      timezone:
-        name: Africa/Lagos
-
-- name: update LB and db servers
-  hosts: lb, db
+- name: update LB server
+  hosts: lb
   remote_user: ubuntu
   become: yes
   become_user: root
+  ignore_unreachable: yes
+  gather_subset:
+    - min
   tasks:
     - name: Update apt repo
-      apt: 
+      apt:
         update_cache: yes
 
     - name: ensure wireshark is at the latest version
@@ -30,14 +30,20 @@
         name: wireshark
         state: latest
 
-    - name: creates directory
+    - name: Creates directory
       file:
         path: /tmp/temp_dir
         state: directory
 
-    - name: set timezone to Africa/Lagos
+    - name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+      file:
+        path: /tmp/temp_dir/temp_file
+        state: touch
+        mode: u=rw,g=r,o=r
+
+    - name: Set timezone to Africa/Lagos
       timezone:
         name: Africa/Lagos
 
-    - name: run some shell script
-      shell: echo "This is a test file..." > /tmp/temp_dir/temp_file
+    - name: Run some shell script
+      shell: echo "this is a test file..." > /tmp/temp_dir/temp_file
