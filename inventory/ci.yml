@@ -9,3 +9,7 @@ localhost ansible_connection=local
 
 [artifact_repository]
 172.31.25.121 ansible_ssh_user='ubuntu'
+
+[jenkins_agents]
+172.31.26.123 ansible_ssh_user='ubuntu'
+172.31.31.68 ansible_ssh_user='ubuntu'
