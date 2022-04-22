@@ -28,3 +28,8 @@
 
 - name: Install Sonarqube
   import_playbook: ../static-assignments/sonarqube.yml
+
+- name: Deploy to the todo server
+  import_playbook: ../static-assignments/todo_deployment.yml
+  vars:
+    artifactory_server_ip: "34.242.219.96"
