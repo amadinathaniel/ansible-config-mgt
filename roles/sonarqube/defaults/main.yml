@@ -42,8 +42,8 @@ sonar_db_embedded: true
 sonar_db_embedded_port: 9092
 
 # SonarQube JDBC Credentials
-sonar_db_user: ""
-sonar_db_pass: ""
+sonar_db_user: "sonar"
+sonar_db_pass: "sonar"
 
 # SonarQube JDBC URL
 # examples (from default sonar.properties file):
